@@ -16,8 +16,6 @@ public interface ListingPictureMapper {
 
     List<PictureDTO> listingPictureToPictureDTO(List<ListingPicture> listingPictures);
 
-    @Mapping(target = "file", source = "file")
-    @Mapping(target = "fileContentType", source = "fileContentType")
     @Mapping(target = "isCover", source = "cover")
     PictureDTO convertToPictureDTO(ListingPicture listingPicture);
 

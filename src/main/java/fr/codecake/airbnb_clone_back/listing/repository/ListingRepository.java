@@ -1,5 +1,6 @@
 package fr.codecake.airbnb_clone_back.listing.repository;
 
+import fr.codecake.airbnb_clone_back.listing.application.dto.DisplayCardListingDTO;
 import fr.codecake.airbnb_clone_back.listing.domain.BookingCategory;
 import fr.codecake.airbnb_clone_back.listing.domain.Listing;
 import org.springframework.data.domain.Page;
@@ -27,4 +28,12 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
     Page<Listing> findAllWithCoverOnly(Pageable pageable);
 
     Optional<Listing> findByPublicId(UUID publicId);
+
+    List<Listing> findByPublicIdIn(List<UUID> allListingPublicIds);
+
+    Optional<Listing> findOneByPublicIdAndLandlordPublicId(UUID listingPublicId, UUID landlordPublicId);
+
+    Page<Listing> findAllByLocationAndBathroomsAndBedroomsAndGuestsAndBeds(
+            Pageable pageable, String location, int bathrooms, int bedrooms, int guests, int beds
+    );
 }
